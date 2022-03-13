@@ -1,0 +1,30 @@
+Installation of Night-Vision Application
+
+1. Install new Raspberry Pi OS Image
+
+2. git Installation
+$ sudo apt upgrade
+$ sudo apt install git
+$ git config --global user.name "retomarti"
+$ git config --global user.email "retomarti@me.com"
+
+3. Clone github Repository
+$ git clone https://github.com/retomarti/voxatec-night-vision.git
+$ git checkout main
+
+4. Enable Pi-Camera
+$ sudo raspi-config
+  -> Enable legacy camera module
+
+5. Run Web-Application
+$ cd <appl-directory>
+$ python3 night-vision.py
+
+6. See Night-Vision Stream from Camera
+Get ip-Address
+$ ip a   -> under wlan' -> inet <ip-address>
+Enter URL in browser: 
+- local: http://127.0.0.1:5000/
+- remote: http://<ip-address>:5000/
+
+
