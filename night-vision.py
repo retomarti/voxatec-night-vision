@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, Response
-from PIL import Image
+from video_stream import VideoStream
+import cv2
 import io
 import time
 import picamera
@@ -21,20 +22,21 @@ def index():
     return render_template('index.html')
 
 def gen():
-    """Video streaming generator"""
-    camera = picamera.PiCamera()
-    camera.resolution = (640, 480)
+    """Video streaming"""
+    video_stream = VideoStream()
     stream = io.BytesIO()
     # Warm-up camera
     # camera.start_preview()
     time.sleep(2)
     # Capture frames to stream
     while True:
-        camera.capture(stream, format='jpeg')
+        frame = video_stream.get_frame()
+        ret, jpeg = cv2.imencode('.jpeg', frame)
         # Rewind stream to the beginning
-        stream.seek(0)
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + stream.getvalue() + b'\r\n')
+#               b'Content-Type: image/jpeg\r\n\r\n' + stream.getvalue() + b'\r\n')
+        b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
+
 
 
 @app.route('/video_feed')

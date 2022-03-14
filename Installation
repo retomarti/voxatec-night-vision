@@ -15,6 +15,10 @@ $ git checkout main
 4. Enable Pi-Camera
 $ sudo raspi-config
   -> Enable legacy camera module
+  
+5. Install OpenCV
+https://medium.com/codemonday/opencv4-python3-raspberry-pi-installation-guide-9182ed893ae6
+https://www.jeremymorgan.com/tutorials/raspberry-pi/how-to-install-opencv-raspberry-pi/
 
 5. Run Web-Application
 $ cd <appl-directory>
@@ -28,3 +32,4 @@ Enter URL in browser:
 - remote: http://<ip-address>:5000/
 
 
+https://python.hotexamples.com/examples/picamera/PiCamera/capture_continuous/python-picamera-capture_continuous-method-examples.html
