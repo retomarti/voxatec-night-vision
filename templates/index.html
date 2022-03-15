@@ -1,9 +1,35 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            /* Two image container */
+            .column {
+                float: left;
+                width: 50%;
+                padding: 5px;
+            }
+
+            /* Clear floats after image container */
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+        </style>
         <title>Video Streaming</title>
     </head>
     <body>
-        <h1> Live Video Streaming </h1>
-        <img src="{{ url_for('video_feed') }}">
+        <div class="row">
+            <div class="column">
+                <img src="{{ url_for('video_feed') }}" style="width:100%">
+            </div>
+            <div class="column">
+                <img src="{{ url_for('video_feed') }}" style="width:100%">
+            </div>
+        </div>
     </body>
 </html>
