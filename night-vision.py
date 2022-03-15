@@ -24,18 +24,18 @@ def index():
 def gen():
     """Video streaming"""
     video_stream = VideoStream()
-    stream = io.BytesIO()
     # Warm-up camera
     # camera.start_preview()
     time.sleep(2)
-    # Capture frames to stream
+    video_stream.start()
     while True:
         frame = video_stream.get_frame()
-        ret, jpeg = cv2.imencode('.jpeg', frame)
-        # Rewind stream to the beginning
-        yield (b'--frame\r\n'
-#               b'Content-Type: image/jpeg\r\n\r\n' + stream.getvalue() + b'\r\n')
-        b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
+        if not(frame is None):
+            ret, jpeg = cv2.imencode('.jpeg', frame)
+            # Rewind stream to the beginning
+            yield (b'--frame\r\n'
+    #               b'Content-Type: image/jpeg\r\n\r\n' + stream.getvalue() + b'\r\n')
+            b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
 
 
 
