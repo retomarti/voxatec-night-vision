@@ -8,7 +8,7 @@ from threading import Thread
 
 class VideoStream:
     
-    def __init__(self, resolution=(640, 480), framerate=25):
+    def __init__(self, resolution=(800, 600), framerate=25):
         # initialize camera and stream
         self.camera = PiCamera()
         self.camera.resolution = resolution

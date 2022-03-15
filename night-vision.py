@@ -32,9 +32,7 @@ def gen():
         frame = video_stream.get_frame()
         if not(frame is None):
             ret, jpeg = cv2.imencode('.jpeg', frame)
-            # Rewind stream to the beginning
             yield (b'--frame\r\n'
-    #               b'Content-Type: image/jpeg\r\n\r\n' + stream.getvalue() + b'\r\n')
             b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
 
 
