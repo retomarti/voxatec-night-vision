@@ -23,7 +23,7 @@ def index():
 
 def gen():
     """Video streaming"""
-    video_stream = VideoStream()
+    video_stream = VideoStream(resolution=(624,608))
     # Warm-up camera
     # camera.start_preview()
     time.sleep(2)
